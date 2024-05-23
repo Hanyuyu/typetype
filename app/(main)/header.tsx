@@ -57,12 +57,12 @@ export function Header(props: { userNavigation: React.ReactNode }) {
           </div>
         </div>
         <Link href={GALLERY_PAGE} className="-m-1.5 p-1.5">
-          <span className="sr-only">Qriginals.com</span>
+          <span className="sr-only">template-app.com</span>
           <Logo
             className="h-10 sm:h-12 w-auto hover:opacity-75 transition-opacity duration-100"
             colors={{
               text: colors.gray[900],
-              dot: colors.fuchsia[600],
+              dot: colors.teal[600],
             }}
           />
         </Link>

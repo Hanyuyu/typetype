@@ -10,24 +10,28 @@ import { Hero } from "./hero";
 import { Sort } from "./sort";
 
 async function getGalleryItems(sorting: "new" | "most-popular" | undefined) {
-  const supabase = createServerComponentClient();
+  try {
+    const supabase = createServerComponentClient();
 
-  const query = supabase
-    .from("creations")
-    .select("id, user_id, name, like_count, use_count, parameters, created_at");
+    const query = supabase
+        .from("creations")
+        .select("id, user_id, name, like_count, use_count, parameters, created_at");
 
-  const { data: galleryItems, error: getGalleryItemsError } = await query
-    .order(sorting === "new" ? "created_at" : "like_count", {
-      ascending: false,
-    })
-    .limit(50);
-  if (getGalleryItemsError) {
-    console.error(getGalleryItemsError);
-    notFound();
+    const { data: galleryItems, error: getGalleryItemsError } = await query
+        .order(sorting === "new" ? "created_at" : "like_count", {
+          ascending: false,
+        })
+        .limit(50);
+    if (getGalleryItemsError) {
+      console.error(getGalleryItemsError);
+      notFound();
+    }
+    if (!galleryItems) notFound();
+
+    return galleryItems;
+  } catch (error){
+    return []
   }
-  if (!galleryItems) notFound();
-
-  return galleryItems;
 }
 
 export default async function Page(props: {
@@ -41,6 +45,7 @@ export default async function Page(props: {
     getUserLikes(),
     getGalleryItems(sorting),
   ]);
+
 
   return (
     <main className="isolate">

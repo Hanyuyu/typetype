@@ -1,3 +1,6 @@
+'use client'
+import Typewriter from 'typewriter-effect';
+
 export function Hero() {
   return (
     <div className="mx-auto max-w-2xl text-center">
@@ -26,6 +29,14 @@ export function Hero() {
       <p className="mt-6 text-lg leading-8 text-gray-600">
         Make your QR Codes Qriginal! Join our community, beautify your codes,
         and share your art. Try it for free! No credit card required.
+          <br />
+          <Typewriter
+              options={{
+                  strings: ['Join our community', 'Try it for free'],
+                  autoStart: true,
+                  loop: true,
+              }}
+          />
       </p>
     </div>
   );

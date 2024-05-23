@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: colors.fuchsia,
+        brand: colors.teal,
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
